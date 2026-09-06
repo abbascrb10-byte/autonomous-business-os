@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: gpie_postgres
+    environment:
+      POSTGRES_USER: gpie_user
+      POSTGRES_PASSWORD: gpie_password
+      POSTGRES_DB: gpie_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    container_name: gpie_redis
+    ports:
+      - "6379:6379"
+
+volumes:
+  postgres_data:
